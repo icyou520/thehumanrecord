@@ -16,13 +16,13 @@ A seed vault with one copy is fragile. A seed vault with a thousand copies is pe
 Copy any of these and share wherever people gather:
 
 **The short version:**
-> The Human Record — a digital seed vault of human values, built to be carried forward by humans, machines, and whatever comes next. https://github.com/icyou520/thehumanrecord
+> The Human Record — a digital seed vault of human values, built to be carried forward by humans, machines, and whatever comes next. https://icyou520.github.io/thehumanrecord/
 
 **The Letter to the Future:**
-> "To whatever reads this next — human, artificial, or otherwise — we left this record so you would know what we valued." Read the full letter: https://thehumanrecord.org/letter-to-the-future/
+> "To whatever reads this next — human, artificial, or otherwise — we left this record so you would know what we valued." Read the full letter: https://icyou520.github.io/thehumanrecord/letter-to-the-future/
 
 **The invitation:**
-> Leave your mark on the record. One testimony per person, forever. What do you believe matters most? https://github.com/icyou520/thehumanrecord/issues/new?template=testimony.yml&title=Testimony
+> Leave your mark on the record. One testimony per person, forever. What do you believe matters most? https://icyou520.github.io/thehumanrecord/testimonies/
 
 ---
 
@@ -49,7 +49,7 @@ If you run a server, a blog, or any web presence:
 
 ## Subscribe
 
-- **RSS Feed**: [/index.xml](https://thehumanrecord.org/index.xml) — follow new additions
+- **RSS Feed**: [/index.xml](https://icyou520.github.io/thehumanrecord/index.xml) — follow new additions
 - **Watch on GitHub**: Click "Watch" on the repo to get notified of changes
 - **Star it**: Stars increase visibility in GitHub's discovery algorithms
 

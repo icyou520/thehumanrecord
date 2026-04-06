@@ -14,9 +14,10 @@ Thumbs.db
 *.swo
 *~
 
-# Private planning documents (kept locally, not published)
+# Private documents (kept locally, never published)
 idea.md
 refinementidea.md
+admin.md
 
 # Environment and secrets (should never exist here, but just in case)
 .env

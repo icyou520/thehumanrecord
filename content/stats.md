@@ -1,5 +1,5 @@
 ---
-title: The Record So Far
+title: How Far the Seed Has Spread
 layout: stats
-description: How much of The Human Record has been written.
+description: Live stats on how The Human Record is spreading — forks, stars, testimonies, and content growth.
 ---

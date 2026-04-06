@@ -10,79 +10,121 @@
   <header class="section-header">
     <h1>{{ .Title }}</h1>
     <p class="section-description">
-      The Human Record is a living project. Here is how much has been written so far.
-      Every number represents a piece of human meaning — preserved, structured, and open.
+      The Human Record only survives if it spreads. These numbers show how far the seed has traveled — how many people have carried it forward, how many copies exist, and how much of the record has been written.
     </p>
   </header>
 
-  <div class="stats-total">
-    <span class="stats-number">{{ $total }}</span>
-    <span class="stats-label">total records in the archive</span>
+  <div class="stats-spread">
+    <h2>How Far It Has Spread</h2>
+    <p class="stats-spread-note">Live data from the project's GitHub repository, updated every time you load this page.</p>
+
+    <div class="spread-grid">
+      <div class="spread-card">
+        <span class="spread-number" id="stat-forks">--</span>
+        <span class="spread-label">Forks</span>
+        <span class="spread-desc">Independent copies of the entire record. Each fork is a backup that survives on its own.</span>
+      </div>
+      <div class="spread-card">
+        <span class="spread-number" id="stat-stars">--</span>
+        <span class="spread-label">Stars</span>
+        <span class="spread-desc">People who marked this project as important. Stars increase visibility in GitHub's algorithm.</span>
+      </div>
+      <div class="spread-card">
+        <span class="spread-number" id="stat-watchers">--</span>
+        <span class="spread-label">Watchers</span>
+        <span class="spread-desc">People actively following the record for updates. They get notified when anything changes.</span>
+      </div>
+      <div class="spread-card">
+        <span class="spread-number" id="stat-issues">--</span>
+        <span class="spread-label">Contributions</span>
+        <span class="spread-desc">Testimony submissions and other contributions from the community.</span>
+      </div>
+    </div>
   </div>
 
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-header">
-        <h2><a href="{{ "values/" | absURL }}">Values</a></h2>
-        <span class="stat-count">{{ $values }} <span class="stat-goal">of 100</span></span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: {{ $values }}%"></div>
-      </div>
-      <p class="stat-description">Universal human values recognized across civilizations.</p>
+  <div class="stats-testimonies">
+    <h2>Voices in the Record</h2>
+    <div class="spread-card spread-card-highlight">
+      <span class="spread-number">{{ $testimonies }}</span>
+      <span class="spread-label">{{ if eq $testimonies 1 }}Person Has{{ else }}People Have{{ end }} Left Their Mark</span>
+      <span class="spread-desc">Real human beings, in their own words, saying what they believe matters most. One per person. Forever.</span>
     </div>
+  </div>
 
-    <div class="stat-card">
-      <div class="stat-header">
-        <h2><a href="{{ "tensions/" | absURL }}">Tensions</a></h2>
-        <span class="stat-count">{{ $tensions }} <span class="stat-goal">of 25</span></span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: {{ mul (div (mul $tensions 100) 25) 1 }}%"></div>
-      </div>
-      <p class="stat-description">Perpetual moral conflicts between legitimate values.</p>
-    </div>
+  <div class="stats-content">
+    <h2>What Has Been Recorded</h2>
+    <p class="stats-content-note">{{ $total }} records written so far. The record is always growing.</p>
 
-    <div class="stat-card">
-      <div class="stat-header">
-        <h2><a href="{{ "parables/" | absURL }}">Parables</a></h2>
-        <span class="stat-count">{{ $parables }} <span class="stat-goal">of 50</span></span>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-header">
+          <h3><a href="{{ "values/" | absURL }}">Values</a></h3>
+          <span class="stat-count">{{ $values }} <span class="stat-goal">of 100</span></span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: {{ $values }}%"></div>
+        </div>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: {{ mul (div (mul $parables 100) 50) 1 }}%"></div>
-      </div>
-      <p class="stat-description">Stories that compress moral insight into narrative form.</p>
-    </div>
 
-    <div class="stat-card">
-      <div class="stat-header">
-        <h2><a href="{{ "proverbs/" | absURL }}">Proverbs</a></h2>
-        <span class="stat-count">{{ $proverbs }} <span class="stat-goal">of 50</span></span>
+      <div class="stat-card">
+        <div class="stat-header">
+          <h3><a href="{{ "tensions/" | absURL }}">Tensions</a></h3>
+          <span class="stat-count">{{ $tensions }} <span class="stat-goal">of 25</span></span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: {{ mul (div (mul $tensions 100) 25) 1 }}%"></div>
+        </div>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: {{ mul (div (mul $proverbs 100) 50) 1 }}%"></div>
-      </div>
-      <p class="stat-description">Cross-cultural proverbs showing convergent wisdom.</p>
-    </div>
 
-    <div class="stat-card">
-      <div class="stat-header">
-        <h2><a href="{{ "testimonies/" | absURL }}">Testimonies</a></h2>
-        <span class="stat-count">{{ $testimonies }}</span>
+      <div class="stat-card">
+        <div class="stat-header">
+          <h3><a href="{{ "parables/" | absURL }}">Parables</a></h3>
+          <span class="stat-count">{{ $parables }} <span class="stat-goal">of 50</span></span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: {{ mul (div (mul $parables 100) 50) 1 }}%"></div>
+        </div>
       </div>
-      <div class="progress-bar progress-infinite">
-        <div class="progress-fill" style="width: {{ cond (gt $testimonies 0) 5 0 }}%"></div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <h3><a href="{{ "proverbs/" | absURL }}">Proverbs</a></h3>
+          <span class="stat-count">{{ $proverbs }} <span class="stat-goal">of 50</span></span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: {{ mul (div (mul $proverbs 100) 50) 1 }}%"></div>
+        </div>
       </div>
-      <p class="stat-description">Individual human voices, each one unique and unrepeatable.</p>
     </div>
   </div>
 
   <div class="stats-cta">
-    <h2>Help Complete the Record</h2>
+    <h2>Help the Seed Spread</h2>
+    <p>Every star, every fork, every share, every testimony makes the record harder to erase.</p>
     <p>
       <a href="{{ "testimonies/" | absURL }}" class="cta-button">Leave Your Testimony</a>
-      <a href="{{ site.Params.repository }}" class="cta-link">Contribute on GitHub</a>
+      <a href="{{ site.Params.repository }}" class="cta-link" target="_blank" rel="noopener">Star on GitHub</a>
     </p>
   </div>
 </section>
+
+<script>
+(function(){
+  fetch('https://api.github.com/repos/icyou520/thehumanrecord')
+    .then(function(r){return r.json()})
+    .then(function(d){
+      if(d.stargazers_count!==undefined){
+        document.getElementById('stat-stars').textContent=d.stargazers_count.toLocaleString();
+        document.getElementById('stat-forks').textContent=d.forks_count.toLocaleString();
+        document.getElementById('stat-watchers').textContent=d.subscribers_count.toLocaleString();
+        document.getElementById('stat-issues').textContent=(d.open_issues_count||0).toLocaleString();
+      }
+    })
+    .catch(function(){
+      ['stat-stars','stat-forks','stat-watchers','stat-issues'].forEach(function(id){
+        document.getElementById(id).textContent='?';
+      });
+    });
+})();
+</script>
 {{ end }}

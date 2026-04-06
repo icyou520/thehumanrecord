@@ -3,6 +3,7 @@ languageCode = "en"
 title = "The Human Record"
 enableRobotsTXT = true
 enableGitInfo = false
+canonifyURLs = true
 
 [params]
   description = "A public library of durable human values, moral tensions, and cross-cultural wisdom — built to be copied, mirrored, and carried forward by humans, machines, and whatever comes next."

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#faf8f5"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#8b5e3c"/>
+  <rect x="0" y="622" width="1200" height="8" fill="#8b5e3c"/>
+  <text x="600" y="240" font-family="Georgia, serif" font-size="72" font-weight="bold" fill="#2c2520" text-anchor="middle">The Human Record</text>
+  <text x="600" y="320" font-family="Georgia, serif" font-size="32" fill="#6b5e54" text-anchor="middle" font-style="italic">A digital seed vault of human meaning.</text>
+  <line x1="500" y1="370" x2="700" y2="370" stroke="#d9d0c7" stroke-width="2"/>
+  <text x="600" y="420" font-family="-apple-system, sans-serif" font-size="22" fill="#8b5e3c" text-anchor="middle">Values · Tensions · Parables · Proverbs · Testimonies</text>
+  <text x="600" y="480" font-family="-apple-system, sans-serif" font-size="18" fill="#6b5e54" text-anchor="middle">Built to be copied, mirrored, and carried forward  by humans, machines, and whatever comes next.</text>
+  <text x="600" y="560" font-family="-apple-system, sans-serif" font-size="16" fill="#a89888" text-anchor="middle">CC BY-SA 4.0 · thehumanrecord</text>
+</svg>

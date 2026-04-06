@@ -1,0 +1,88 @@
+{{ define "main" }}
+{{ $values := len (where site.RegularPages "Section" "values") }}
+{{ $tensions := len (where site.RegularPages "Section" "tensions") }}
+{{ $parables := len (where site.RegularPages "Section" "parables") }}
+{{ $proverbs := len (where site.RegularPages "Section" "proverbs") }}
+{{ $testimonies := len (where site.RegularPages "Section" "testimonies") }}
+{{ $total := add (add (add (add $values $tensions) $parables) $proverbs) $testimonies }}
+
+<section class="stats-page">
+  <header class="section-header">
+    <h1>{{ .Title }}</h1>
+    <p class="section-description">
+      The Human Record is a living project. Here is how much has been written so far.
+      Every number represents a piece of human meaning — preserved, structured, and open.
+    </p>
+  </header>
+
+  <div class="stats-total">
+    <span class="stats-number">{{ $total }}</span>
+    <span class="stats-label">total records in the archive</span>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-header">
+        <h2><a href="{{ "values/" | absURL }}">Values</a></h2>
+        <span class="stat-count">{{ $values }} <span class="stat-goal">of 100</span></span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: {{ $values }}%"></div>
+      </div>
+      <p class="stat-description">Universal human values recognized across civilizations.</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-header">
+        <h2><a href="{{ "tensions/" | absURL }}">Tensions</a></h2>
+        <span class="stat-count">{{ $tensions }} <span class="stat-goal">of 25</span></span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: {{ mul (div (mul $tensions 100) 25) 1 }}%"></div>
+      </div>
+      <p class="stat-description">Perpetual moral conflicts between legitimate values.</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-header">
+        <h2><a href="{{ "parables/" | absURL }}">Parables</a></h2>
+        <span class="stat-count">{{ $parables }} <span class="stat-goal">of 50</span></span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: {{ mul (div (mul $parables 100) 50) 1 }}%"></div>
+      </div>
+      <p class="stat-description">Stories that compress moral insight into narrative form.</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-header">
+        <h2><a href="{{ "proverbs/" | absURL }}">Proverbs</a></h2>
+        <span class="stat-count">{{ $proverbs }} <span class="stat-goal">of 50</span></span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: {{ mul (div (mul $proverbs 100) 50) 1 }}%"></div>
+      </div>
+      <p class="stat-description">Cross-cultural proverbs showing convergent wisdom.</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-header">
+        <h2><a href="{{ "testimonies/" | absURL }}">Testimonies</a></h2>
+        <span class="stat-count">{{ $testimonies }}</span>
+      </div>
+      <div class="progress-bar progress-infinite">
+        <div class="progress-fill" style="width: {{ cond (gt $testimonies 0) 5 0 }}%"></div>
+      </div>
+      <p class="stat-description">Individual human voices, each one unique and unrepeatable.</p>
+    </div>
+  </div>
+
+  <div class="stats-cta">
+    <h2>Help Complete the Record</h2>
+    <p>
+      <a href="{{ "testimonies/" | absURL }}" class="cta-button">Leave Your Testimony</a>
+      <a href="{{ site.Params.repository }}" class="cta-link">Contribute on GitHub</a>
+    </p>
+  </div>
+</section>
+{{ end }}

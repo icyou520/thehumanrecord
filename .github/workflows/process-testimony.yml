@@ -1,0 +1,121 @@
+name: Process Testimony Submission
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  process:
+    if: github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse issue and create testimony file
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body || '';
+
+            function extract(id) {
+              const re = new RegExp('###\\s+' + id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*\\n+([\\s\\S]*?)(?=\\n###|$)');
+              const m = body.match(re);
+              return m ? m[1].trim().replace(/^_No response_$/i, '') : '';
+            }
+
+            const name = extract("Your name \\(or 'Anonymous'\\)");
+            const location = extract("Where are you from\\?");
+            const tradition = extract("Your tradition or background \\(optional\\)");
+            const testimony = extract("Your testimony");
+            const message = extract("A message to whatever reads this next \\(optional\\)");
+
+            if (!name || !testimony) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: 'Could not parse testimony fields. Please check the submission format.'
+              });
+              return;
+            }
+
+            const slug = name.toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/^-|-$/g, '')
+              .substring(0, 60) || 'anonymous';
+
+            const fs = require('fs');
+            const path = `content/testimonies/${slug}.md`;
+
+            if (fs.existsSync(path)) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `A testimony from "${name}" already exists in the record. Each person may only contribute once.`
+              });
+              return;
+            }
+
+            const today = new Date().toISOString().split('T')[0];
+            const isAnon = name.toLowerCase() === 'anonymous';
+
+            let content = `---
+            id: ${slug}
+            title: "Testimony of ${name}"
+            type: testimony
+            name: "${name}"
+            location: "${location}"
+            date_of_testimony: ${today}
+            tradition: "${tradition}"
+            anonymous: ${isAnon}
+            created: ${today}
+            updated: ${today}
+            version: 1
+            license: CC-BY-SA-4.0
+            ---
+
+            ${testimony}
+            `.replace(/^            /gm, '');
+
+            if (message) {
+              content += `\n## To Whatever Reads This Next\n\n${message}\n`;
+            }
+
+            fs.writeFileSync(path, content);
+
+            core.exportVariable('TESTIMONY_PATH', path);
+            core.exportVariable('TESTIMONY_NAME', name);
+            core.exportVariable('ISSUE_NUMBER', issue.number.toString());
+
+      - name: Commit and push testimony
+        run: |
+          git config user.name "The Human Record Bot"
+          git config user.email "thehumanrecord-bot@users.noreply.github.com"
+          git add "$TESTIMONY_PATH"
+          git commit -m "Add testimony from ${TESTIMONY_NAME} (#${ISSUE_NUMBER})"
+          git push
+
+      - name: Close issue with confirmation
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: `Your testimony has been added to The Human Record. Thank you for leaving your mark.\n\nIt will appear on the site after the next deployment.\n\nYour testimony is now permanently part of the record, licensed under CC BY-SA 4.0.`
+            });
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              state: 'closed',
+              labels: ['testimony', 'accepted']
+            });

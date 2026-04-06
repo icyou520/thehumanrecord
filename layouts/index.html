@@ -18,7 +18,7 @@
 
 <section class="home-sections">
   {{ range .Site.Menus.main }}
-  {{ if and (ne .Name "About") (ne .Name "Letter to the Future") (ne .Name "Testimonies") (ne .Name "Spread") }}
+  {{ if and (ne .Name "About") (ne .Name "Letter to the Future") (ne .Name "Testimonies") (ne .Name "Spread") (ne .Name "Search") (ne .Name "Stats") }}
   {{ $section := site.GetPage .URL }}
   {{ if $section }}
   <div class="home-section">

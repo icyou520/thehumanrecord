@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ if not .IsHome }}{{ .Title }} — {{ end }}{{ .Site.Title }}</title>
   <meta name="description" content="{{ with .Params.summary }}{{ . }}{{ else }}{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
+  <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | absURL }}">
   <link rel="canonical" href="{{ .Permalink }}">
   <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ "index.xml" | absURL }}">
 
@@ -18,11 +19,16 @@
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:site_name" content="{{ .Site.Title }}">
   <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="{{ "og-image.svg" | absURL }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Human Record — A digital seed vault of human meaning.">
 
   {{/* Twitter / X Cards */}}
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ .Title }}">
   <meta name="twitter:description" content="{{ with .Params.summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta name="twitter:image" content="{{ "og-image.svg" | absURL }}">
 
   {{/* AI / LLM discoverability */}}
   <link rel="alternate" type="text/plain" href="{{ "llms.txt" | absURL }}" title="LLM-readable site summary">
@@ -34,6 +40,9 @@
   {{ with .Site.Params.license }}<meta name="license" content="{{ . }}">{{ end }}
 
   <link rel="stylesheet" href="{{ "css/style.css" | absURL }}">
+  <script>
+    (function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);})();
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -45,6 +54,7 @@
         {{ range .Site.Menus.main }}
         <li><a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
         {{ end }}
+        <li><button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"></button></li>
       </ul>
     </nav>
   </header>
@@ -61,5 +71,16 @@
     </p>
     <p class="tagline">{{ .Site.Params.tagline }}</p>
   </footer>
+  <script>
+    (function(){
+      var btn=document.getElementById('theme-toggle');
+      function current(){return document.documentElement.getAttribute('data-theme')||
+        (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}
+      function apply(t){document.documentElement.setAttribute('data-theme',t);
+        localStorage.setItem('theme',t);btn.textContent=t==='dark'?'Light':'Dark'}
+      btn.textContent=current()==='dark'?'Light':'Dark';
+      btn.addEventListener('click',function(){apply(current()==='dark'?'light':'dark')});
+    })();
+  </script>
 </body>
 </html>

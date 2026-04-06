@@ -1,0 +1,81 @@
+{{ define "main" }}
+<section class="search-page">
+  <header class="section-header">
+    <h1>{{ .Title }}</h1>
+    <p class="section-description">Search across all values, tensions, parables, proverbs, and testimonies in the record.</p>
+  </header>
+
+  <div class="search-controls">
+    <input type="search" id="search-input" class="search-input" placeholder="Search by title, summary, tradition, or tag..." autofocus aria-label="Search the record">
+    <div class="search-filters" id="search-filters">
+      <button class="filter-btn active" data-type="all">All</button>
+      <button class="filter-btn" data-type="value">Values</button>
+      <button class="filter-btn" data-type="tension">Tensions</button>
+      <button class="filter-btn" data-type="parable">Parables</button>
+      <button class="filter-btn" data-type="proverb">Proverbs</button>
+      <button class="filter-btn" data-type="testimony">Testimonies</button>
+    </div>
+  </div>
+
+  <div id="search-count" class="search-count"></div>
+  <div id="search-results" class="record-grid"></div>
+</section>
+
+<script>
+(function(){
+  var input=document.getElementById('search-input'),
+      results=document.getElementById('search-results'),
+      countEl=document.getElementById('search-count'),
+      filters=document.getElementById('search-filters'),
+      data=[],activeType='all';
+
+  fetch('{{ "index.json" | absURL }}')
+    .then(function(r){return r.json()})
+    .then(function(j){
+      data=j.records||[];
+      render(data);
+    });
+
+  function render(items){
+    if(!items.length){
+      countEl.textContent=input.value?'No records found.':'';
+      results.innerHTML=input.value?'<p class="search-empty">No matching records. Try a different term.</p>':'';
+      return;
+    }
+    countEl.textContent=items.length+' record'+(items.length===1?'':'s')+(input.value?' found':'');
+    results.innerHTML=items.map(function(r){
+      var traditions=(r.traditions||[]).slice(0,3).map(function(t){return '<li>'+t+'</li>'}).join('');
+      var extra=(r.traditions||[]).length>3?'<li>+'+(r.traditions.length-3)+' more</li>':'';
+      return '<article class="record-card"><a href="'+r.url+'">'+
+        '<span class="record-type">'+(r.type||'')+'</span>'+
+        '<h2>'+(r.title||'')+'</h2>'+
+        (r.summary?'<p>'+r.summary+'</p>':'')+
+        (traditions?'<ul class="card-traditions">'+traditions+extra+'</ul>':'')+
+        '</a></article>';
+    }).join('');
+  }
+
+  function search(){
+    var q=input.value.toLowerCase().trim();
+    var filtered=data.filter(function(r){
+      if(activeType!=='all'&&r.type!==activeType)return false;
+      if(!q)return true;
+      var haystack=[r.title,r.summary,r.type].concat(r.traditions||[]).concat(r.tags||[]).join(' ').toLowerCase();
+      return q.split(/\s+/).every(function(w){return haystack.indexOf(w)>-1});
+    });
+    render(filtered);
+  }
+
+  input.addEventListener('input',search);
+
+  filters.addEventListener('click',function(e){
+    var btn=e.target.closest('.filter-btn');
+    if(!btn)return;
+    filters.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    activeType=btn.getAttribute('data-type');
+    search();
+  });
+})();
+</script>
+{{ end }}

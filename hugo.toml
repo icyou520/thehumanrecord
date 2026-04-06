@@ -67,6 +67,14 @@ enableGitInfo = false
     url = "/spread/"
     weight = 7
   [[menu.main]]
+    name = "Stats"
+    url = "/stats/"
+    weight = 8
+  [[menu.main]]
+    name = "Search"
+    url = "/search/"
+    weight = 9
+  [[menu.main]]
     name = "About"
     url = "/about/"
-    weight = 8
+    weight = 10

@@ -1,0 +1,109 @@
+{{ define "main" }}
+<article class="record" itemscope itemtype="https://schema.org/Article">
+  <header class="record-header">
+    <span class="record-type">{{ .Params.type }}</span>
+    <h1 itemprop="name">{{ .Title }}</h1>
+    {{ with .Params.summary }}
+    <p class="record-summary" itemprop="description">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  {{ if eq .Params.type "tension" }}
+  <div class="tension-poles">
+    {{ with .Params.pole_a }}
+    <div class="pole pole-a">
+      <h3>{{ .value | title }}</h3>
+      <p>{{ .argument }}</p>
+    </div>
+    {{ end }}
+    <div class="pole-divider" aria-hidden="true">vs.</div>
+    {{ with .Params.pole_b }}
+    <div class="pole pole-b">
+      <h3>{{ .value | title }}</h3>
+      <p>{{ .argument }}</p>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  {{ if .Params.origin }}
+  <p class="record-origin"><strong>Origin:</strong> {{ .Params.origin }}</p>
+  {{ end }}
+
+  {{ if .Params.moral }}
+  <p class="record-moral"><strong>Moral:</strong> {{ .Params.moral }}</p>
+  {{ end }}
+
+  <div class="record-body" itemprop="articleBody">
+    {{ .Content }}
+  </div>
+
+  <aside class="record-meta">
+    {{ with .Params.traditions }}
+    <div class="meta-block">
+      <h4>Traditions</h4>
+      <ul class="tag-list">
+        {{ range . }}
+        <li><a href="{{ "traditions" | absURL }}/{{ . | urlize }}/">{{ . }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+
+    {{ with .Params.related }}
+    <div class="meta-block">
+      <h4>Related</h4>
+      <ul class="tag-list">
+        {{ range . }}
+        <li><a href="#{{ . }}">{{ . | humanize | title }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+
+    {{ with .Params.languages }}
+    <div class="meta-block">
+      <h4>In Other Languages</h4>
+      <ul class="lang-list">
+        {{ range $code, $name := . }}
+        <li><span class="lang-code">{{ $code }}</span> {{ $name }}</li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+
+    {{ with .Params.sources }}
+    <div class="meta-block">
+      <h4>Sources</h4>
+      <ul class="source-list">
+        {{ range . }}
+        <li>
+          <cite>{{ .title }}</cite>
+          {{ with .author }} — {{ . }}{{ end }}
+          {{ with .tradition }} ({{ . }}){{ end }}
+          {{ with .year }}{{ if lt . 0 }} ({{ mul . -1 }} BCE){{ else }} ({{ . }}){{ end }}{{ end }}
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+
+    {{ with .Params.tags }}
+    <div class="meta-block">
+      <h4>Tags</h4>
+      <ul class="tag-list">
+        {{ range . }}
+        <li><a href="{{ "tags" | absURL }}/{{ . | urlize }}/">{{ . }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+
+    <div class="meta-block meta-provenance">
+      <p>Version {{ .Params.version }} · Created {{ .Params.created }} · Updated {{ .Params.updated }}</p>
+      <p>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">{{ .Params.license }}</a></p>
+      <p>ID: <code>{{ .Params.id }}</code></p>
+    </div>
+  </aside>
+</article>
+{{ end }}

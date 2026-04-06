@@ -1,0 +1,34 @@
+{{ define "main" }}
+<section class="section-listing">
+  <header class="section-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}
+    <div class="section-description">{{ . }}</div>
+    {{ end }}
+  </header>
+
+  <div class="record-grid">
+    {{ range .Pages }}
+    <article class="record-card">
+      <a href="{{ .Permalink }}">
+        <span class="record-type">{{ .Params.type }}</span>
+        <h2>{{ .Title }}</h2>
+        {{ with .Params.summary }}
+        <p>{{ . }}</p>
+        {{ end }}
+        {{ with .Params.traditions }}
+        <ul class="card-traditions">
+          {{ range first 3 . }}
+          <li>{{ . }}</li>
+          {{ end }}
+          {{ if gt (len .) 3 }}
+          <li>+{{ sub (len .) 3 }} more</li>
+          {{ end }}
+        </ul>
+        {{ end }}
+      </a>
+    </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

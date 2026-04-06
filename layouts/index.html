@@ -1,0 +1,58 @@
+{{ define "main" }}
+<section class="hero">
+  <h1>The Human Record</h1>
+  <p class="hero-tagline">A digital seed vault of human meaning.</p>
+  <p class="hero-description">
+    Durable values, moral tensions, parables, and cross-cultural wisdom —
+    structured, versioned, open, and built to be carried forward
+    by humans, machines, and whatever comes next.
+  </p>
+</section>
+
+<section class="home-letter">
+  <blockquote>
+    <p>To whatever reads this next — human, artificial, or otherwise — we left this record so you would know what we valued. Not our technologies. Not our wars. Our values. The things we returned to across every civilization, every century, every failure.</p>
+  </blockquote>
+  <p><a href="{{ "letter-to-the-future/" | absURL }}">Read the full Letter to the Future</a></p>
+</section>
+
+<section class="home-sections">
+  {{ range .Site.Menus.main }}
+  {{ if and (ne .Name "About") (ne .Name "Letter to the Future") }}
+  {{ $section := site.GetPage .URL }}
+  {{ if $section }}
+  <div class="home-section">
+    <h2><a href="{{ .URL }}">{{ .Name }}</a></h2>
+    {{ with $section }}
+    {{ with .Content }}<p>{{ . | plainify | truncate 200 }}</p>{{ end }}
+    <p class="section-count">{{ len .Pages }} records</p>
+    {{ end }}
+  </div>
+  {{ end }}
+  {{ end }}
+  {{ end }}
+</section>
+
+<section class="home-about">
+  <h2>What Is This?</h2>
+  <p>
+    The Human Record is a public, open library of compressed human meaning:
+    values recognized across civilizations, tensions that never resolve,
+    stories that survive because they are true enough to retell.
+    It is shaped in large part by the teachings of Jesus Christ —
+    especially love, mercy, truth, humility, forgiveness, and peace —
+    while remaining open to all who want to help preserve what is best in humanity.
+  </p>
+  <p>
+    Every entry is plain text with structured metadata. Every entry is
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> —
+    free to copy, translate, remix, and redistribute. The more copies exist,
+    the harder it is to erase.
+  </p>
+  <p>
+    <a href="{{ "about/" | absURL }}">About this project</a> ·
+    <a href="{{ site.Params.repository }}">View the source</a> ·
+    <a href="{{ "index.xml" | absURL }}">Subscribe via RSS</a>
+  </p>
+</section>
+{{ end }}

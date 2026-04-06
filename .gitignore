@@ -1,0 +1,29 @@
+# Hugo build output
+public/
+resources/
+.hugo_build.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor / IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment and secrets (should never exist here, but just in case)
+.env
+.env.*
+*.pem
+*.key
+
+# Snapshots (generated, large)
+snapshots/*.tar.gz
+
+# Data exports (regenerated from content)
+data/*.jsonl
+data/*.csv
+data/checksums.sha256

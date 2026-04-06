@@ -1,0 +1,23 @@
+/* THE HUMAN RECORD */
+/* A digital seed vault of human meaning. */
+
+/* TEAM */
+  Founder: The Human Record Contributors
+  Site: https://thehumanrecord.org
+  Repository: https://github.com/thehumanrecord/thehumanrecord
+  License: CC BY-SA 4.0
+
+/* THANKS */
+  All contributors, translators, and mirrors.
+  Everyone who carries forward what matters.
+
+/* TECHNOLOGY */
+  Content: Markdown + YAML frontmatter
+  Generator: Hugo (https://gohugo.io)
+  Hosting: Static files
+  Schema: JSON Schema + Schema.org
+
+/* STANDARDS */
+  Language: English (with translations in progress)
+  Doctype: HTML5
+  Accessibility: WCAG 2.1 AA target

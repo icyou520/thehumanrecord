@@ -1,0 +1,32 @@
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.description }}",
+  "license": "{{ .Site.Params.licenseURL }}"
+}
+</script>
+{{ else if .IsPage }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ .Title }}",
+  "description": "{{ with .Params.summary }}{{ . }}{{ end }}",
+  "url": "{{ .Permalink }}",
+  "datePublished": "{{ .Params.created }}",
+  "dateModified": "{{ .Params.updated }}",
+  "version": "{{ .Params.version }}",
+  "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "publisher": {
+    "@type": "Organization",
+    "name": "The Human Record"
+  },
+  "keywords": [{{ range $i, $t := .Params.tags }}{{ if $i }}, {{ end }}"{{ $t }}"{{ end }}],
+  "inLanguage": "en"
+}
+</script>
+{{ end }}

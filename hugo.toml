@@ -1,0 +1,64 @@
+baseURL = "https://thehumanrecord.org/"
+languageCode = "en"
+title = "The Human Record"
+enableRobotsTXT = true
+enableGitInfo = false
+
+[params]
+  description = "A public library of durable human values, moral tensions, and cross-cultural wisdom — built to be copied, mirrored, and carried forward by humans, machines, and whatever comes next."
+  author = "The Human Record Contributors"
+  license = "CC-BY-SA-4.0"
+  licenseURL = "https://creativecommons.org/licenses/by-sa/4.0/"
+  repository = "https://github.com/icyou520/thehumanrecord"
+  tagline = "A digital seed vault of human meaning."
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS", "JSON"]
+  taxonomy = ["HTML", "RSS"]
+
+[outputFormats.JSON]
+  mediaType = "application/json"
+  baseName = "index"
+  isPlainText = true
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+[taxonomies]
+  tag = "tags"
+  tradition = "traditions"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
+  [markup.highlight]
+    style = "monokailight"
+
+[menu]
+  [[menu.main]]
+    name = "Values"
+    url = "/values/"
+    weight = 1
+  [[menu.main]]
+    name = "Tensions"
+    url = "/tensions/"
+    weight = 2
+  [[menu.main]]
+    name = "Parables"
+    url = "/parables/"
+    weight = 3
+  [[menu.main]]
+    name = "Proverbs"
+    url = "/proverbs/"
+    weight = 4
+  [[menu.main]]
+    name = "Letter to the Future"
+    url = "/letter-to-the-future/"
+    weight = 5
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 6

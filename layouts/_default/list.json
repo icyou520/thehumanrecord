@@ -1,0 +1,21 @@
+{{ $records := slice }}
+{{ range .Pages }}
+{{ $record := dict
+  "id" .Params.id
+  "title" .Title
+  "type" .Params.type
+  "summary" .Params.summary
+  "url" .Permalink
+  "traditions" .Params.traditions
+  "related" .Params.related
+  "tags" .Params.tags
+  "languages" .Params.languages
+  "sources" .Params.sources
+  "created" .Params.created
+  "updated" .Params.updated
+  "version" .Params.version
+  "license" .Params.license
+}}
+{{ $records = $records | append $record }}
+{{ end }}
+{{ $records | jsonify (dict "indent" "  ") }}

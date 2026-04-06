@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thehumanrecord.org/schema/record.json",
+  "title": "Human Record Entry",
+  "description": "Schema for a single entry in The Human Record — a value, tension, parable, or proverb.",
+  "type": "object",
+  "required": ["id", "title", "type", "summary", "traditions", "tags", "sources", "created", "updated", "version", "license"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Unique slug identifier (lowercase, hyphens only)"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable title"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["value", "tension", "parable", "proverb"],
+      "description": "Category of this record"
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "One-sentence compression of the idea (max 300 chars)"
+    },
+    "traditions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Cultural, philosophical, or religious traditions that recognize this"
+    },
+    "related": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "IDs of related records"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Descriptive tags for categorization"
+    },
+    "languages": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Map of ISO 639-1 language codes to translated titles"
+    },
+    "pole_a": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "string" },
+        "argument": { "type": "string" }
+      },
+      "description": "First pole of a tension (tension type only)"
+    },
+    "pole_b": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "string" },
+        "argument": { "type": "string" }
+      },
+      "description": "Second pole of a tension (tension type only)"
+    },
+    "origin": {
+      "type": "string",
+      "description": "Geographic or cultural origin (parables and proverbs)"
+    },
+    "moral": {
+      "type": "string",
+      "description": "Core moral insight (parables)"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "author": { "type": "string" },
+          "tradition": { "type": "string" },
+          "year": { "type": "integer" }
+        },
+        "required": ["title"]
+      },
+      "minItems": 1,
+      "description": "Citations to philosophy, religion, psychology, anthropology, or literature"
+    },
+    "created": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date of creation"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date of last substantive update"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Version number, incremented on substantive edits"
+    },
+    "license": {
+      "type": "string",
+      "const": "CC-BY-SA-4.0",
+      "description": "License identifier (always CC-BY-SA-4.0)"
+    }
+  }
+}

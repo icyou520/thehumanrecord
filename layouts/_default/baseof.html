@@ -49,7 +49,7 @@
 
   <header class="site-header">
     <nav aria-label="Main navigation">
-      <a href="{{ "/" | absURL }}" class="site-title">{{ .Site.Title }}</a>
+      <a href="{{ site.Home.Permalink }}" class="site-title">{{ .Site.Title }}</a>
       <ul class="nav-links">
         {{ range .Site.Menus.main }}
         <li><a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>

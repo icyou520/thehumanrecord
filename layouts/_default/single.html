@@ -104,6 +104,8 @@
       <p>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">{{ .Params.license }}</a></p>
       <p>ID: <code>{{ .Params.id }}</code></p>
     </div>
+
+    {{ partial "share.html" . }}
   </aside>
 </article>
 {{ end }}

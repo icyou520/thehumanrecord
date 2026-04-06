@@ -1,0 +1,10 @@
+<div class="meta-block share-block">
+  <h4>Carry It Forward</h4>
+  <div class="share-links">
+    <a href="https://twitter.com/intent/tweet?text={{ .Title | urlquery }}%20%E2%80%94%20The%20Human%20Record&url={{ .Permalink | urlquery }}" target="_blank" rel="noopener" class="share-link">Share on X</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink | urlquery }}" target="_blank" rel="noopener" class="share-link">Share on Facebook</a>
+    <a href="mailto:?subject={{ .Title | urlquery }}%20%E2%80%94%20The%20Human%20Record&body=Read%20this%3A%20{{ .Permalink | urlquery }}" class="share-link">Email</a>
+    <button class="share-link copy-link" onclick="navigator.clipboard.writeText('{{ .Permalink }}').then(function(){this.textContent='Copied!'}.bind(this))">Copy Link</button>
+  </div>
+  <p class="share-cta"><a href="{{ "testimonies/" | absURL }}">Leave your testimony</a> · <a href="{{ "spread/" | absURL }}">More ways to help</a></p>
+</div>

@@ -14,6 +14,10 @@ Thumbs.db
 *.swo
 *~
 
+# Private planning documents (kept locally, not published)
+idea.md
+refinementidea.md
+
 # Environment and secrets (should never exist here, but just in case)
 .env
 .env.*
@@ -27,3 +31,4 @@ snapshots/*.tar.gz
 data/*.jsonl
 data/*.csv
 data/checksums.sha256
+gitinfo.md

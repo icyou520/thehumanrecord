@@ -1,0 +1,28 @@
+{{ define "main" }}
+<article class="testimony" itemscope itemtype="https://schema.org/Article">
+  <header class="testimony-header">
+    <span class="record-type">testimony</span>
+    <h1 itemprop="name">{{ .Title }}</h1>
+    <div class="testimony-meta-line">
+      {{ with .Params.name }}<span class="testimony-name">{{ . }}</span>{{ end }}
+      {{ with .Params.location }} · <span class="testimony-location">{{ . }}</span>{{ end }}
+      {{ with .Params.tradition }} · <span class="testimony-tradition">{{ . }}</span>{{ end }}
+      {{ with .Params.date_of_testimony }} · <time>{{ . }}</time>{{ end }}
+    </div>
+  </header>
+
+  <div class="record-body testimony-body" itemprop="articleBody">
+    {{ .Content }}
+  </div>
+
+  <aside class="record-meta">
+    <div class="meta-block meta-provenance">
+      <p>Entered into the record: {{ .Params.created }}</p>
+      <p>License: <a href="https://creativecommons.org/licenses/by-sa/4.0/">{{ .Params.license }}</a></p>
+      <p>This testimony is permanent. One person. One mark. Forever.</p>
+    </div>
+
+    {{ partial "share.html" . }}
+  </aside>
+</article>
+{{ end }}

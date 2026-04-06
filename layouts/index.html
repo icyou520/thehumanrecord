@@ -18,7 +18,7 @@
 
 <section class="home-sections">
   {{ range .Site.Menus.main }}
-  {{ if and (ne .Name "About") (ne .Name "Letter to the Future") }}
+  {{ if and (ne .Name "About") (ne .Name "Letter to the Future") (ne .Name "Testimonies") (ne .Name "Spread") }}
   {{ $section := site.GetPage .URL }}
   {{ if $section }}
   <div class="home-section">
@@ -53,6 +53,19 @@
     <a href="{{ "about/" | absURL }}">About this project</a> ·
     <a href="{{ site.Params.repository }}">View the source</a> ·
     <a href="{{ "index.xml" | absURL }}">Subscribe via RSS</a>
+  </p>
+</section>
+
+<section class="home-cta">
+  <h2>Leave Your Mark</h2>
+  <p>
+    The record is not complete without real human voices. Leave your testimony —
+    one person, one mark, forever in the record.
+    What do you believe matters most?
+  </p>
+  <p>
+    <a href="{{ "testimonies/" | absURL }}" class="cta-button">Leave Your Testimony</a>
+    <a href="{{ "spread/" | absURL }}" class="cta-link">Help spread the record</a>
   </p>
 </section>
 {{ end }}

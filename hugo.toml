@@ -55,10 +55,18 @@ enableGitInfo = false
     url = "/proverbs/"
     weight = 4
   [[menu.main]]
+    name = "Testimonies"
+    url = "/testimonies/"
+    weight = 5
+  [[menu.main]]
     name = "Letter to the Future"
     url = "/letter-to-the-future/"
-    weight = 5
+    weight = 6
+  [[menu.main]]
+    name = "Spread"
+    url = "/spread/"
+    weight = 7
   [[menu.main]]
     name = "About"
     url = "/about/"
-    weight = 6
+    weight = 8

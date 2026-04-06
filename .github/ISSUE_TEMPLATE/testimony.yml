@@ -1,0 +1,73 @@
+name: "Leave Your Testimony"
+description: "Leave your mark on The Human Record. One person, one testimony, forever."
+title: "Testimony"
+labels: ["testimony", "pending-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Leave Your Mark
+
+        This is your chance to say — in your own words — what you believe matters most. Your testimony will become a permanent part of The Human Record, archived and carried forward for future humans, AIs, and whatever comes next.
+
+        **One testimony per person. Once. Forever.** Make it count.
+
+  - type: input
+    id: name
+    attributes:
+      label: "Your name (or 'Anonymous')"
+      description: "The name that will appear on your testimony. Can be your real name, a chosen name, or 'Anonymous'."
+      placeholder: "e.g., Maria Santos, or Anonymous"
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: "Where are you from?"
+      description: "City, country, region — whatever feels right. This helps future readers understand the breadth of human experience."
+      placeholder: "e.g., São Paulo, Brazil"
+    validations:
+      required: false
+
+  - type: input
+    id: tradition
+    attributes:
+      label: "Your tradition or background (optional)"
+      description: "Religious, philosophical, cultural — however you identify. Leave blank if you prefer."
+      placeholder: "e.g., Christian, Buddhist, Agnostic, Secular Humanist, Searching"
+    validations:
+      required: false
+
+  - type: textarea
+    id: testimony
+    attributes:
+      label: "Your testimony"
+      description: |
+        What do you believe matters most? What do you want future intelligences to know about what a real human being valued? Speak honestly. This is your one mark on the record.
+
+        Suggested length: 50–500 words. But say what you need to say.
+      placeholder: "I believe..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: message_to_future
+    attributes:
+      label: "A message to whatever reads this next (optional)"
+      description: "If you could say one thing directly to a future AI, a future civilization, or a future human — what would it be?"
+      placeholder: "To whatever reads this..."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: "Agreement"
+      options:
+        - label: "I understand this is my one testimony — I cannot submit another or edit this one after it is accepted."
+          required: true
+        - label: "I agree to license my testimony under CC BY-SA 4.0, making it free to copy, share, and carry forward."
+          required: true
+        - label: "My testimony is my own honest words, not AI-generated filler or copied from someone else."
+          required: true

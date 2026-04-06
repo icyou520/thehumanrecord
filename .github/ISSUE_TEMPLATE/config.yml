@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "Suggest a Value, Tension, or Parable"
+    url: "https://github.com/icyou520/thehumanrecord/issues/new?title=Suggestion:+&labels=suggestion"
+    about: "Suggest content for the canon — a value, tension, parable, or proverb you think should be in the record."
+  - name: "Report an Error"
+    url: "https://github.com/icyou520/thehumanrecord/issues/new?title=Error:+&labels=correction"
+    about: "Report a factual error, misattribution, or other correction needed."

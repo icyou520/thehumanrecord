@@ -451,6 +451,108 @@ main {
   margin-top: var(--space-sm);
 }
 
+/* CTA */
+.home-cta {
+  text-align: center;
+  padding: var(--space-xl) 0;
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-lg);
+}
+.home-cta h2 {
+  margin-top: 0;
+}
+.cta-button {
+  display: inline-block;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  padding: 0.6em 1.5em;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-right: var(--space-md);
+  transition: background 0.15s;
+}
+.cta-button:hover {
+  background: var(--color-accent-hover);
+  color: var(--color-bg);
+}
+.cta-link {
+  font-size: 0.9rem;
+}
+
+/* Share tools */
+.share-block {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-md);
+}
+.share-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+.share-link {
+  display: inline-block;
+  font-size: 0.8rem;
+  padding: 0.3em 0.8em;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--color-text-muted);
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: border-color 0.15s, color 0.15s;
+}
+.share-link:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.share-cta {
+  font-size: 0.85rem;
+  margin-top: var(--space-sm);
+}
+
+/* Testimony styles */
+.testimony-header {
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+.testimony-header h1 {
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+.testimony-meta-line {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+.testimony-name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+.testimony-body {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+}
+.testimony-body p {
+  font-family: var(--font-serif);
+}
+.testimony-count {
+  margin-bottom: var(--space-lg);
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+.testimony-card h2 {
+  font-family: var(--font-body);
+}
+.testimony-card-meta {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xs) !important;
+}
+
 /* Print styles */
 @media print {
   .site-header, .site-footer, .skip-link { display: none; }

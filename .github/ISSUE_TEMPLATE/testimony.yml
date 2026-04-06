@@ -1,7 +1,7 @@
 name: "Leave Your Testimony"
 description: "Leave your mark on The Human Record. One person, one testimony, forever."
 title: "Testimony"
-labels: ["testimony", "pending-review"]
+labels: ["testimony"]
 body:
   - type: markdown
     attributes:
@@ -65,7 +65,7 @@ body:
     attributes:
       label: "Agreement"
       options:
-        - label: "I understand this is my one testimony — I cannot submit another or edit this one after it is accepted."
+        - label: "I understand this is my one testimony — I cannot submit another or edit this one after it is added."
           required: true
         - label: "I agree to license my testimony under CC BY-SA 4.0, making it free to copy, share, and carry forward."
           required: true

@@ -2,7 +2,7 @@ name: Process Testimony Submission
 
 on:
   issues:
-    types: [labeled]
+    types: [opened]
 
 permissions:
   contents: write
@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   process:
-    if: github.event.label.name == 'approved'
+    if: contains(github.event.issue.labels.*.name, 'testimony')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -39,7 +39,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issue.number,
-                body: 'Could not parse testimony fields. Please check the submission format.'
+                body: 'Could not process your testimony — the name or testimony field was empty. Please try submitting again.'
               });
               return;
             }
@@ -57,7 +57,13 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issue.number,
-                body: `A testimony from "${name}" already exists in the record. Each person may only contribute once.`
+                body: `A testimony from "${name}" already exists in the record. Each person may only contribute once. Your words are already part of the record.`
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed'
               });
               return;
             }
@@ -110,7 +116,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issue.number,
-              body: `Your testimony has been added to The Human Record. Thank you for leaving your mark.\n\nIt will appear on the site after the next deployment.\n\nYour testimony is now permanently part of the record, licensed under CC BY-SA 4.0.`
+              body: `Thank you for leaving your mark on The Human Record.\n\nYour testimony has been added exactly as you wrote it. No one edited it. No one filtered it. Your words are now a permanent part of the record, licensed under CC BY-SA 4.0.\n\nIt will appear on the live site within a few minutes.`
             });
             await github.rest.issues.update({
               owner: context.repo.owner,

@@ -74,11 +74,12 @@
   <script>
     (function(){
       var btn=document.getElementById('theme-toggle');
+      var sun='\u2600\uFE0F',moon='\uD83C\uDF19';
       function current(){return document.documentElement.getAttribute('data-theme')||
         (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}
       function apply(t){document.documentElement.setAttribute('data-theme',t);
-        localStorage.setItem('theme',t);btn.textContent=t==='dark'?'Light':'Dark'}
-      btn.textContent=current()==='dark'?'Light':'Dark';
+        localStorage.setItem('theme',t);btn.textContent=t==='dark'?sun:moon}
+      btn.textContent=current()==='dark'?sun:moon;
       btn.addEventListener('click',function(){apply(current()==='dark'?'light':'dark')});
     })();
   </script>

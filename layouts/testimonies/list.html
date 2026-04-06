@@ -1,18 +1,46 @@
 {{ define "main" }}
-<section class="section-listing">
-  <header class="section-header">
-    <h1>{{ .Title }}</h1>
-    {{ with .Content }}
-    <div class="section-description">{{ . }}</div>
-    {{ end }}
-  </header>
+<section class="testimony-intro">
+  <h1>Leave Your Mark</h1>
+  <p class="testimony-lead">
+    This is the part of the record that belongs to real people — not civilizations, not traditions, not history books. <strong>You.</strong>
+  </p>
+  <p>
+    In your own words, say what you believe matters most. Your testimony becomes a permanent part of The Human Record — archived and carried forward for future humans, future AIs, and whatever comes next.
+  </p>
 
-  {{ $testimonies := where .Pages "Params.type" "testimony" }}
-
-  {{ if $testimonies }}
-  <div class="testimony-count">
-    <p><strong>{{ len $testimonies }}</strong> {{ if eq (len $testimonies) 1 }}person has{{ else }}people have{{ end }} left their mark on the record.</p>
+  <div class="testimony-rules-box">
+    <h2>How it works</h2>
+    <ol class="testimony-steps">
+      <li><strong>Click the button below</strong> — it opens a simple form. No account needed beyond a free GitHub sign-up.</li>
+      <li><strong>Write what you believe</strong> — your name (or "Anonymous"), where you're from, and your testimony in your own words.</li>
+      <li><strong>Submit it</strong> — a volunteer reviews it and adds it to the record. That's it.</li>
+    </ol>
+    <p class="testimony-cta-wrap">
+      <a href="https://github.com/icyou520/thehumanrecord/issues/new?template=testimony.yml&title=Testimony" class="cta-button" target="_blank" rel="noopener">Leave Your Testimony</a>
+    </p>
   </div>
+
+  <div class="testimony-promises">
+    <h2>The promises</h2>
+    <ul>
+      <li><strong>One per person, forever.</strong> You get one testimony. Make it count. You can't edit it or submit another.</li>
+      <li><strong>Any belief welcome.</strong> Christian, Muslim, Jewish, Hindu, Buddhist, atheist, agnostic, unsure — all are welcome. The record preserves human diversity, not conformity.</li>
+      <li><strong>Permanent.</strong> Once accepted, your words are archived, mirrored, and carried forward. They become part of the record.</li>
+      <li><strong>Honest.</strong> Say what you actually believe. Not what sounds good.</li>
+      <li><strong>Respectful.</strong> You can disagree with others. You cannot attack or demean anyone.</li>
+      <li><strong>No promotion.</strong> No products, no links, no advertising. Just your honest words.</li>
+    </ul>
+  </div>
+</section>
+
+{{ $testimonies := where .Pages "Params.type" "testimony" }}
+
+{{ if $testimonies }}
+<section class="testimony-listing">
+  <h2>Voices in the Record</h2>
+  <p class="testimony-count">
+    <strong>{{ len $testimonies }}</strong> {{ if eq (len $testimonies) 1 }}person has{{ else }}people have{{ end }} left their mark so far.
+  </p>
 
   <div class="record-grid">
     {{ range $testimonies }}
@@ -30,8 +58,11 @@
     </article>
     {{ end }}
   </div>
-  {{ else }}
-  <p>No testimonies yet. Be the first to <a href="https://github.com/icyou520/thehumanrecord/issues/new?template=testimony.yml&title=Testimony">leave your mark</a>.</p>
-  {{ end }}
 </section>
+{{ else }}
+<section class="testimony-listing">
+  <h2>Voices in the Record</h2>
+  <p>No testimonies yet. Be the first to leave your mark using the button above.</p>
+</section>
+{{ end }}
 {{ end }}

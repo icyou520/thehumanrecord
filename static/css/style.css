@@ -174,18 +174,17 @@ code {
 
 .theme-toggle {
   background: none;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  padding: 0.2em 0.6em;
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
+  border: none;
+  padding: 0.2em;
+  font-size: 1.2rem;
   cursor: pointer;
-  font-family: var(--font-body);
-  transition: border-color 0.15s, color 0.15s;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.15s, transform 0.15s;
 }
 .theme-toggle:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
+  opacity: 1;
+  transform: scale(1.15);
 }
 
 /* Main content */
@@ -620,7 +619,62 @@ main {
   margin-top: var(--space-sm);
 }
 
-/* Testimony styles */
+/* Testimony intro */
+.testimony-intro {
+  margin-bottom: var(--space-xl);
+}
+.testimony-lead {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+.testimony-rules-box {
+  background: var(--color-surface);
+  border-radius: 8px;
+  padding: var(--space-lg);
+  margin: var(--space-lg) 0;
+}
+.testimony-rules-box h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+.testimony-steps {
+  padding-left: 1.5em;
+  margin-bottom: var(--space-lg);
+}
+.testimony-steps li {
+  margin-bottom: var(--space-sm);
+  line-height: 1.6;
+}
+.testimony-cta-wrap {
+  text-align: center;
+  margin: 0;
+}
+.testimony-promises {
+  margin-top: var(--space-lg);
+}
+.testimony-promises h2 {
+  font-size: 1.2rem;
+}
+.testimony-promises ul {
+  list-style: none;
+  padding: 0;
+}
+.testimony-promises li {
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+  line-height: 1.6;
+}
+.testimony-promises li:last-child {
+  border-bottom: none;
+}
+.testimony-listing {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-xl);
+}
+
+/* Testimony single page styles */
 .testimony-header {
   margin-bottom: var(--space-lg);
   padding-bottom: var(--space-md);

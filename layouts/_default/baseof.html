@@ -17,6 +17,21 @@
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta property="og:locale" content="en_US">
+
+  {{/* Twitter / X Cards */}}
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ .Title }}">
+  <meta name="twitter:description" content="{{ with .Params.summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+
+  {{/* AI / LLM discoverability */}}
+  <link rel="alternate" type="text/plain" href="{{ "llms.txt" | absURL }}" title="LLM-readable site summary">
+
+  {{/* Additional SEO signals */}}
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="author" content="{{ .Site.Params.author }}">
+  <meta name="generator" content="Hugo {{ hugo.Version }}">
+  {{ with .Site.Params.license }}<meta name="license" content="{{ . }}">{{ end }}
 
   <link rel="stylesheet" href="{{ "css/style.css" | absURL }}">
 </head>

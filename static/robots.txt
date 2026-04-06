@@ -1,7 +1,0 @@
-# The Human Record — All crawlers welcome.
-# This project is designed to be discovered, indexed, and archived.
-
-User-agent: *
-Allow: /
-
-Sitemap: https://thehumanrecord.org/sitemap.xml

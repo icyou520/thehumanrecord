@@ -3,8 +3,8 @@
 
 /* TEAM */
   Founder: The Human Record Contributors
-  Site: https://thehumanrecord.org
-  Repository: https://github.com/thehumanrecord/thehumanrecord
+  Site: https://icyou520.github.io/thehumanrecord/
+  Repository: https://github.com/icyou520/thehumanrecord
   License: CC BY-SA 4.0
 
 /* THANKS */
